@@ -42,15 +42,26 @@ class App extends React.Component {
     }
   }
   handleChange = event => {
-    console.log(event.target.name)
-
+    console.log(event.target.value)
   }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    let newTodo = {
+      task: event.target.todo.value,
+      id: Date.now(),
+      completed: false
+    }
+    let newTodos = [...this.state.todos, newTodo];
+    this.setState({...this.state, todos:newTodos});
+  }
+  
   render() {
     return (
       <div>
         <h2>Welcome to the Todo App!</h2>
-        <TodoForm />
-        <TodoList todos={this.state.todos}/>
+        <TodoForm handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
+        <TodoList todos={this.state.todos} />
       </div>
     );
   }

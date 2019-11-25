@@ -4,7 +4,7 @@ class TodoForm extends Component {
     render () {
         return (
             <div>
-                <form>
+                <form onSubmit={this.props.handleSubmit}>
                     <label htmlFor='todo-imput'>Todo to Add:</label>
                     <input 
                         type='text' 
