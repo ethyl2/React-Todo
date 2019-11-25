@@ -33,58 +33,7 @@ class App extends React.Component {
     super();
     this.state = {
       audio: false,
-      todos: [
-        {
-        task: 'Make a Christmas playlist',
-        id: 1528817077286, //Date.now()
-        completed: false
-        },
-        {
-        task: 'Bake cookies',
-        id: 1528817084358,
-        completed: false
-        },
-        {
-          task: 'Build a gingerbread house',
-          id: 1528817084357,
-          completed: false
-        },
-        {
-          task: 'Decorate a tree',
-          id: 1528817084356,
-          completed: false
-        },
-        {
-          task: 'Watch a Christmas movie',
-          id: 1528817084355,
-          completed: false
-        },
-        {
-          task: 'Find a Santa hat and wear it',
-          id: 1528817084354,
-          completed: false
-        },
-        {
-          task: 'Bake Cookies',
-          id: 1528817084353,
-          completed: false
-        },
-        {
-          task: 'Create a gift list',
-          id: 1528817084352,
-          completed: false
-        },
-        {
-          task: 'Create a wish list',
-          id: 1528817084351,
-          completed: false
-        },
-        {
-          task: 'Send Christmas cards',
-          id: 1528817084350,
-          completed: false
-          },
-      ]
+      todos: JSON.parse(localStorage.getItem('todos')) || []
     }
   }
   
@@ -98,16 +47,21 @@ class App extends React.Component {
     }
     const updatedTodos = [...this.state.todos, newTodo];
     this.setState({...this.state, todos:updatedTodos});
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
+    //console.log(JSON.parse(localStorage.getItem('todos')));
   }
 
   clearCompleted = (event) => {
-    const notCompletedTodos = this.state.todos.filter(todo => !todo.completed);
+    //const notCompletedTodos = this.state.todos.filter(todo => !todo.completed);
+    const notCompletedTodos = JSON.parse(localStorage.getItem('todos')).filter(todo => !todo.completed);
     this.setState({...this.state, todos:notCompletedTodos});
+    localStorage.setItem('todos', JSON.stringify(notCompletedTodos));
   }
 
   handleClick = event => {
     event.target.classList.add('completed');
     const targetId = Number(event.target.id);
+    /*
     const updatedTodos = this.state.todos.map(todo => {
       if (todo.id === targetId) {
         return {...todo, completed:true}
@@ -115,7 +69,16 @@ class App extends React.Component {
         return todo;
       }
     });
+    */
+    const updatedTodos = JSON.parse(localStorage.getItem('todos')).map(todo => {
+      if (todo.id === targetId) {
+        return {...todo, completed:true}
+      } else {
+        return todo;
+      }
+    });
     this.setState({...this.state, todos:updatedTodos});
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
     if (this.state.audio) {
     const completedEl = document.querySelector('.completedSound');
     completedEl.play();
