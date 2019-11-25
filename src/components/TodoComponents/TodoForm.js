@@ -8,16 +8,15 @@ class TodoForm extends Component {
                     <label htmlFor='todo-imput'>Todo to Add:</label>
                     <input 
                         type='text' 
-                        placeholder='todo to add'
+                        placeholder=' next festive & fun item'
                         name='todo'
                         id='todo-input'
-                        onChange={this.props.handleChange}
                         />
                     <br />
                     <button type='submit'>Add Todo</button>
-                    <br />
-                    <button>Clear Completed</button>
+                    <br />       
                 </form>
+                <button onClick={this.props.clearCompleted}>Clear Completed</button>
             </div>
         )
     }

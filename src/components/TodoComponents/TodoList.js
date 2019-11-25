@@ -7,20 +7,20 @@ import Todo from './Todo';
 class TodoList extends Component {
     render () {
         return (
-            <div>
+            <ul>
                 {this.props.todos.map((todo, index)=> {
                     return (
-                        <ul key={todo.id}>
-                           <li>
-                               <Todo todo={todo} 
-                                    index={index} 
-                                    handleClick={this.props.handleClick}/>
+                            <li key={todo.id}
+                            onClick={this.props.handleClick}
+                            id={todo.id} >
+                                <Todo todo={todo}
+                                index={index} 
+                                />
                             </li>
-                        </ul>
                         )
                     }
                 )}
-            </div>
+            </ul>
         )
     }
 }

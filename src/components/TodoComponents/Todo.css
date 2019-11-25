@@ -1,3 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Delius+Swash+Caps|Lato&display=swap');
+body {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    padding: 1rem;
+}
+
+h1, h2, h3 {
+    font-family: 'Delius Swash Caps', cursive;
+}
+
+ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+li {
+   list-style-type: circle;
+   list-style-image: url(../../images/green.png);
+   width: 25%;
+   margin: 0.5rem 2rem;  
+}
+
 .completed {
     text-decoration: line-through;
+    list-style-type: square;
+    list-style-image: url(../../images/red.png);
+}
+
+.img-container {
+    width: 30%;
+    float: right;
+}
+
+.img-container img {
+    max-width: 100%;
+}
+
+form {
+    border: 2px solid #BE1D2D;
+    width: 40%;
+    margin: 2rem auto;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 4px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    background: #56C1AF;
+    padding: 0.5rem;
+    border-radius: 2px;
+    border: 1px solid #4EAEA0;
+}
+
+button:hover {
+    background: #9C9ACC;
+    border-color: #7C7CB8;
+
+}
+
+footer {
+    background: #FCF5AD;
+    margin: 0;
+    padding: 1rem;
+}
+
+footer a {
+    text-decoration: none;
+    color: black;
+}
+
+.source-links {
+    display: flex;
+    width: 60%;
+    margin: 1rem auto;
+    justify-content: space-between;
+    
 }
