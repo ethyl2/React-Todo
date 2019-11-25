@@ -1,6 +1,8 @@
 import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+import './components/TodoComponents/Todo.css';
+
 
 /*
 const sample data = [
@@ -41,19 +43,30 @@ class App extends React.Component {
       ]
     }
   }
-  handleChange = event => {
-    console.log(event.target.value)
-  }
-
-  handleSubmit = (event) => {
+  handleChange = event => console.log(event.target.value);
+  
+  handleSubmit = event => {
     event.preventDefault();
     let newTodo = {
       task: event.target.todo.value,
       id: Date.now(),
       completed: false
     }
-    let newTodos = [...this.state.todos, newTodo];
-    this.setState({...this.state, todos:newTodos});
+    let updatedTodos = [...this.state.todos, newTodo];
+    this.setState({...this.state, todos:updatedTodos});
+  }
+
+  handleClick = event => {
+    event.target.classList.add('completed');
+    const targetId = Number(event.target.id);
+    const updatedTodos = this.state.todos.map(todo => {
+      if (todo.id === targetId) {
+        return {...todo, completed:true}
+      } else {
+        return todo;
+      }
+    });
+    this.setState({...this.state, todos:updatedTodos});
   }
   
   render() {
@@ -61,7 +74,7 @@ class App extends React.Component {
       <div>
         <h2>Welcome to the Todo App!</h2>
         <TodoForm handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
-        <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos} handleClick={this.handleClick} />
       </div>
     );
   }

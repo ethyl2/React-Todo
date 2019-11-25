@@ -11,7 +11,11 @@ class TodoList extends Component {
                 {this.props.todos.map((todo, index)=> {
                     return (
                         <ul key={todo.id}>
-                           <li><Todo todo={todo} index={index}/></li>
+                           <li>
+                               <Todo todo={todo} 
+                                    index={index} 
+                                    handleClick={this.props.handleClick}/>
+                            </li>
                         </ul>
                         )
                     }
