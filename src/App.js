@@ -97,18 +97,22 @@ class App extends React.Component {
   handleSearchChange = event => {
     const search = event.target.value;
     this.setState({...this.state, searchTerm: search});
-    //console.log(search);
     console.log(this.state.searchTerm);
-    const winners = JSON.parse(localStorage.getItem('todos')).filter(todo =>
-        todo.task.toLowerCase().includes(this.state.searchTerm.toLowerCase())
-      );
-    const modifiedWinners = winners.map(winner => {
-      return (
-        {...winner, display: true}
-        )
-      });
     
-    console.log(modifiedWinners);
+    //Map thrutodos and set display:true if they include the searchTerm and display:false
+    // if they don't.
+    const modifiedTodos = JSON.parse(localStorage.getItem('todos')).map(todo => {
+      if (todo.task.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
+        return (
+          {...todo, display: true}
+        )
+      } else {
+        return {...todo, display: false}
+      }
+    });
+    console.log(modifiedTodos);
+    //this.setState({...this.state, todos:modifiedTodos});
+    //localStorage.setItem('todos', JSON.stringify(modifiedTodos));
   }
   
   render() {
