@@ -1,8 +1,11 @@
 import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+import TodoSearchForm from './components/TodoComponents/TodoSearchForm';
 import Footer from './components/Footer';
+
 import './components/TodoComponents/Todo.css';
+
 import christmasIntro from './audio/christmasIntro.mp3';
 import bell from './audio/bell.wav';
 import xmasnight from './images/xmasnight.jpg';
@@ -154,16 +157,9 @@ class App extends React.Component {
           handleClick={this.handleClick} 
         />
 
-        <form>
-          <label htmlFor='search'>Search Your Todos</label>
-          <input type='text'
-            placeholder='search term'
-            id='search'
-            name='search'
-            value={this.state.searchTerm}
-            onChange={this.handleSearchChange}
-            />
-        </form>
+        <TodoSearchForm searchTerm={this.state.searchTerm}
+          handleSearchChange={this.handleSearchChange} />
+        
         <button onClick={this.showAll}>Show All</button>
 
        <Footer />
