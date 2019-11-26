@@ -97,7 +97,7 @@ class App extends React.Component {
   handleSearchChange = event => {
     const search = event.target.value;
     this.setState({...this.state, searchTerm: search});
-    console.log(this.state.searchTerm);
+    //console.log(this.state.searchTerm);
     
     //Map thru todos and set display:true if they include the searchTerm and display:false
     // if they don't.
@@ -114,7 +114,18 @@ class App extends React.Component {
     //TODO: Why does the following line break the code?
     //this.setState({...this.state, todos:modifiedTodos});
     localStorage.setItem('todos', JSON.stringify(modifiedTodos));
-    console.log(localStorage.getItem('todos'));
+    //console.log(localStorage.getItem('todos'));
+  }
+
+  showAll = () => {
+    const modifiedTodos = JSON.parse(localStorage.getItem('todos')).map(todo => {
+      return (
+        {...todo, display: true}
+      )
+    })
+    localStorage.setItem('todos', JSON.stringify(modifiedTodos));
+    //console.log(localStorage.getItem('todos'));
+    this.setState({...this.state, todos:modifiedTodos});
   }
   
   render() {
@@ -153,6 +164,7 @@ class App extends React.Component {
             onChange={this.handleSearchChange}
             />
         </form>
+        <button onClick={this.showAll}>Show All</button>
 
        <Footer />
       </div>
