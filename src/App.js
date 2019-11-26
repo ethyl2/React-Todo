@@ -33,7 +33,8 @@ class App extends React.Component {
     super();
     this.state = {
       audio: false,
-      todos: JSON.parse(localStorage.getItem('todos')) || []
+      todos: JSON.parse(localStorage.getItem('todos')) || [],
+      searchTerm: '',
     }
   }
   
@@ -43,7 +44,8 @@ class App extends React.Component {
     const newTodo = {
       task: event.target.todo.value,
       id: Date.now(),
-      completed: false
+      completed: false,
+      display: true
     }
     const updatedTodos = [...this.state.todos, newTodo];
     this.setState({...this.state, todos:updatedTodos});
@@ -91,6 +93,23 @@ class App extends React.Component {
     audioEl.play();
 
   }
+
+  handleSearchChange = event => {
+    const search = event.target.value;
+    this.setState({...this.state, searchTerm: search});
+    //console.log(search);
+    console.log(this.state.searchTerm);
+    const winners = JSON.parse(localStorage.getItem('todos')).filter(todo =>
+        todo.task.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+      );
+    const modifiedWinners = winners.map(winner => {
+      return (
+        {...winner, display: true}
+        )
+      });
+    
+    console.log(modifiedWinners);
+  }
   
   render() {
     return (
@@ -117,6 +136,18 @@ class App extends React.Component {
         <TodoList todos={this.state.todos} 
           handleClick={this.handleClick} 
         />
+
+        <form>
+          <label htmlFor='search'>Search Your Todos</label>
+          <input type='text'
+            placeholder='search term'
+            id='search'
+            name='search'
+            value={this.state.searchTerm}
+            onChange={this.handleSearchChange}
+            />
+        </form>
+
        <Footer />
       </div>
     );
