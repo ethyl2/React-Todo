@@ -48,7 +48,7 @@ li {
    list-style-type: circle;
    list-style-image: url(../../images/green.png);
    width: 25%;
-   margin: 0.5rem;  
+   margin: 1rem 0.5rem;  
 }
 
 .completed {
