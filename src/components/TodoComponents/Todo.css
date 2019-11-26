@@ -23,11 +23,13 @@ h1 {
 }
 
 h2 {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    padding: 2rem 0;
 }
 
 h3 {
     font-size: 1rem;
+    margin: 1rem auto;
 }
 
 p {
@@ -48,7 +50,8 @@ li {
    list-style-type: circle;
    list-style-image: url(../../images/green.png);
    width: 25%;
-   margin: 1rem 0.5rem;  
+   margin: 1rem;
+   background: #F6F6BA;
 }
 
 .completed {
@@ -98,14 +101,15 @@ button:hover {
 }
 
 footer {
-    background: #FCF5AD;
+    background: #BD2C49;
     margin: 1rem 0 0 0;
     padding: 1rem;
+    color: white;
 }
 
 footer a {
     text-decoration: none;
-    color: black;
+    color: white;
     font-size: 0.75rem;
 }
 
