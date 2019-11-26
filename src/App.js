@@ -8,6 +8,9 @@ import './components/TodoComponents/Todo.css';
 
 import christmasIntro from './audio/christmasIntro.mp3';
 import bell from './audio/bell.wav';
+import magic from './audio/magic.wav';
+import child from './audio/child.ogg';
+import sleighBells from './audio/sleighBells.wav';
 import xmasnight from './images/xmasnight.jpg';
 
 /*
@@ -44,19 +47,29 @@ class App extends React.Component {
   
   handleSubmit = event => {
     event.preventDefault();
-    const newTodo = {
-      task: event.target.todo.value,
-      id: Date.now(),
-      completed: false,
-      display: true
+    if (event.target.todo.value) {
+      if (this.state.audio) {
+        const TodoEl = document.querySelector('.addTodo');
+        TodoEl.play();
+        }
+      const newTodo = {
+        task: event.target.todo.value,
+        id: Date.now(),
+        completed: false,
+        display: true
+      }
+      const updatedTodos = [...this.state.todos, newTodo];
+      this.setState({...this.state, todos:updatedTodos});
+      localStorage.setItem('todos', JSON.stringify(updatedTodos));
+      //console.log(JSON.parse(localStorage.getItem('todos')));
     }
-    const updatedTodos = [...this.state.todos, newTodo];
-    this.setState({...this.state, todos:updatedTodos});
-    localStorage.setItem('todos', JSON.stringify(updatedTodos));
-    //console.log(JSON.parse(localStorage.getItem('todos')));
   }
 
   clearCompleted = (event) => {
+    if (this.state.audio) {
+      const doneEl = document.querySelector('.done');
+      doneEl.play();
+      }
     //const notCompletedTodos = this.state.todos.filter(todo => !todo.completed);
     const notCompletedTodos = JSON.parse(localStorage.getItem('todos')).filter(todo => !todo.completed);
     this.setState({...this.state, todos:notCompletedTodos});
@@ -121,6 +134,10 @@ class App extends React.Component {
   }
 
   showAll = () => {
+    if (this.state.audio) {
+      const showAllEl = document.querySelector('.show-all');
+      showAllEl.play();
+      }
     const modifiedTodos = JSON.parse(localStorage.getItem('todos')).map(todo => {
       return (
         {...todo, display: true}
@@ -148,6 +165,13 @@ class App extends React.Component {
         <TodoForm handleSubmit={this.handleSubmit} 
           clearCompleted={this.clearCompleted}
         />
+        <audio className='addTodo'>
+          <source src={sleighBells}></source>
+        </audio>
+        <audio className='done'>
+          <source src={child}></source>
+        </audio>
+
         <p>Click on the ornaments once each item is complete.</p>
         <audio className='completedSound'>
           <source src={bell}></source>
@@ -161,6 +185,9 @@ class App extends React.Component {
           handleSearchChange={this.handleSearchChange} />
         
         <button onClick={this.showAll}>Show All</button>
+        <audio className='show-all'>
+          <source src={magic}></source>
+        </audio>
 
        <Footer />
       </div>

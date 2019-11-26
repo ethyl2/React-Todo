@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Delius+Swash+Caps|Lato&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    padding: 0;
+    margin: 0;
+}
+
 body {
     font-family: 'Lato', sans-serif;
     text-align: center;
@@ -9,18 +17,37 @@ h1, h2, h3 {
     font-family: 'Delius Swash Caps', cursive;
 }
 
+h1 {
+    font-size: 3rem;
+    margin: 0.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+p {
+    font-size: 0.8rem;
+}
+
 ul {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
     align-items: stretch;
+    width: 90%;
+    margin: 1rem auto;
 }
 
 li {
    list-style-type: circle;
    list-style-image: url(../../images/green.png);
-   width: 15%;
-   margin: 0.5rem 2rem;  
+   width: 25%;
+   margin: 0.5rem;  
 }
 
 .completed {
@@ -47,15 +74,19 @@ form {
     border-radius: 4px;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    font-size: 2.5rem;
 }
 
 button {
     background: #56C1AF;
     padding: 0.5rem;
+    margin: 0.75rem;
     border-radius: 2px;
     border: 1px solid #4EAEA0;
+    font-size: 1.5rem;
+    font-family: 'Delius Swash Caps', cursive;
 }
 
 button:hover {
@@ -73,6 +104,7 @@ footer {
 footer a {
     text-decoration: none;
     color: black;
+    font-size: 0.75rem;
 }
 
 .source-links {

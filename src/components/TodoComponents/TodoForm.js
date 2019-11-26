@@ -12,9 +12,9 @@ class TodoForm extends Component {
                         name='todo'
                         id='todo-input'
                         />
-                    <br />
+                    
                     <button type='submit'>Add Todo</button>
-                    <br />       
+                        
                 </form>
                 <button onClick={this.props.clearCompleted}>Clear Completed</button>
             </div>
