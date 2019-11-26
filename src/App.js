@@ -99,7 +99,7 @@ class App extends React.Component {
     this.setState({...this.state, searchTerm: search});
     console.log(this.state.searchTerm);
     
-    //Map thrutodos and set display:true if they include the searchTerm and display:false
+    //Map thru todos and set display:true if they include the searchTerm and display:false
     // if they don't.
     const modifiedTodos = JSON.parse(localStorage.getItem('todos')).map(todo => {
       if (todo.task.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
@@ -110,9 +110,11 @@ class App extends React.Component {
         return {...todo, display: false}
       }
     });
-    console.log(modifiedTodos);
+    //console.log(modifiedTodos);
+    //TODO: Why does the following line break the code?
     //this.setState({...this.state, todos:modifiedTodos});
-    //localStorage.setItem('todos', JSON.stringify(modifiedTodos));
+    localStorage.setItem('todos', JSON.stringify(modifiedTodos));
+    console.log(localStorage.getItem('todos'));
   }
   
   render() {
@@ -137,7 +139,7 @@ class App extends React.Component {
           <source src={bell}></source>
         </audio>
 
-        <TodoList todos={this.state.todos} 
+        <TodoList todos={JSON.parse(localStorage.getItem('todos'))} 
           handleClick={this.handleClick} 
         />
 

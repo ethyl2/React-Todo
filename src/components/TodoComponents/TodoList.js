@@ -7,9 +7,11 @@ import Todo from './Todo';
 class TodoList extends Component {
 
     render () {
+        if (this.props.todos) {
         return (
             <ul>
                 {this.props.todos.map((todo, index)=> {
+                    if (todo.display) {
                         return (
                                 <li key={todo.id}
                                 onClick={this.props.handleClick}
@@ -19,11 +21,17 @@ class TodoList extends Component {
                                     />
                                 </li>
                             )
+                    } else {
+                        return null;
                     }
+                } 
                 )}
             </ul>
         )
+    } else {
+        return null;
     }
+}
 }
 
 export default TodoList;
